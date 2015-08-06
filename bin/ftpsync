@@ -500,7 +500,7 @@ while [ -e "${UPDATEREQUIRED}" ]; do
             set +e
             # Step one, sync everything except Packages/Releases
             ${RSYNC} ${RSYNC_OPTIONS} ${RSYNC_OPTIONS1} ${EXCLUDE} ${SOURCE_EXCLUDE} \
-                ${RSYNCPTH}::${RSYNC_PATH} "${TO}" >>"${LOGDIR}/rsync-${NAME}.log" 2>>"${LOGDIR}/rsync-${NAME}.error"
+                ${RSYNCPTH}::${RSYNC_PATH} "${TO}"
             result=$?
             set -e
 
@@ -572,7 +572,7 @@ while [ -e "${UPDATEREQUIRED}" ]; do
             # We are lucky, it worked. Now do step 2 and sync again, this time including
             # the packages/releases files
             ${RSYNC} ${RSYNC_OPTIONS} ${RSYNC_OPTIONS2} ${EXCLUDE} ${SOURCE_EXCLUDE} \
-                ${RSYNCPTH}::${RSYNC_PATH} "${TO}" >>"${LOGDIR}/rsync-${NAME}.log" 2>>"${LOGDIR}/rsync-${NAME}.error"
+                ${RSYNCPTH}::${RSYNC_PATH} "${TO}"
             result=$?
             set -e
 
