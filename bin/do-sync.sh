@@ -9,8 +9,11 @@ case $1 in
     security)
         CONFFILE=ftpsync.conf.security
         ;;
+    postgres)
+        CONFFILE=ftpsync.conf.postgres
+        ;;
     *)
-        echo "Expected 'debian' or 'security' as an argument" 1>&2
+        echo "Expected 'debian', 'postgres', or 'security' as an argument" 1>&2
         exit 42
 esac
 
