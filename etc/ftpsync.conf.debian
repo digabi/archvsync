@@ -8,7 +8,7 @@
 
 ## Mirrorname. This is used for things like the trace file name and should always
 ## be the full hostname of the mirror.
-#MIRRORNAME=`hostname -f`
+MIRRORNAME=`hostname -f`
 
 ## Destination of the mirrored files. Should be an empty directory.
 ## CAREFUL, this directory will contain the mirror. Everything else
@@ -106,7 +106,7 @@ ARCH_EXCLUDE="alpha arm arm64 armel armhf hppa hurd-i386 ia64 kfreebsd-amd64 kfr
 ## had a successful mirror sync. Make sure that it always ends up in
 ## project/trace and always shows the full hostname.
 ## This is *relative* to ${TO}
-#TRACE="project/trace/${MIRRORNAME}"
+TRACE="project/trace/${MIRRORNAME}"
 
 ## The trace file can have different format/contents. Here you can select
 ## what it will be.
@@ -149,10 +149,13 @@ RSYNC_EXTRA=""
 ## Files that must *never* be deleted by rsync. These are files handled
 ## internally by ftpsync and will be created, updated, and deleted when
 ## appropriate.
-#RSYNC_FILTER="--filter=protect_Archive-Update-in-Progress-${MIRRORNAME} --filter=protect_${TRACE} --filter=protect_Archive-Update-Required-${MIRRORNAME}"
+RSYNC_FILTER="--filter=protect_Archive-Update-in-Progress-${MIRRORNAME} --filter=protect_${TRACE} --filter=protect_Archive-Update-Required-${MIRRORNAME}"
 
 ## Default rsync options every rsync invocation sees.
 #RSYNC_OPTIONS="-prltvHSB8192 --timeout 3600 --stats ${RSYNC_FILTER}"
+
+# -H removed because AWS EFS supports max 177 hardlinks per inode
+RSYNC_OPTIONS="-prltvSB8192 --timeout 3600 --stats ${RSYNC_FILTER}"
 
 ## Options the first pass gets. We do not want the Packages/Source indices
 ## here, and we also do not want to delete any files yet.
