@@ -25,7 +25,7 @@ TO="/home/debian-mirror/debian"
 
 ## The host we mirror from
 #RSYNC_HOST=some.mirror.debian.org
-RSYNC_HOST=ftp.ee.debian.org
+RSYNC_HOST=nic.funet.fi
 
 ## In case we need a user to access the rsync share at our upstream host
 #RSYNC_USER=
